@@ -1,10 +1,13 @@
-import { FilePenLineIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloudIcon } from "lucide-react";
+import { FilePenLineIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloudIcon, XIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { dummyResumeData } from "../assets/assets";
 
 const Dashboard = () => {
   const color = ["#9333ea", "#d97706", "#dc2626", "#0284c7", "#16a34a"];
-  const [allResumes, setallResumes] = useState([]);
+const [allResumes, setallResumes] = useState([]);       
+const [showCreatorResume, setshowCreatorResume] = useState(false);     
+const[showUploadResume,setShowUploadResume]  = useState(false);
+const[title ,settitle]  = useState(false);
   const loadAllResumes = async () => {
     setallResumes(dummyResumeData);
   };
@@ -65,6 +68,21 @@ const Dashboard = () => {
               </button>
             );
           })}
+        </div>
+        <div>
+          {showCreatorResume && (
+            <form className="fixed inset-0 bg-black/70 backdrop:bllur bg-opacity-50 z-10 flex items-center justify-center">
+              <div>
+                <h2>Create a Resume</h2>
+                <input type="text" placeholder="Enter resume title" className="w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600 ring-green-600" required/>
+                <button className="w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">Create Resume</button>
+                <XIcon className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors" onClick={()=>{setshowCreatorResume(false); 
+                  
+                }}/>
+              </div>
+
+            </form>
+          )}
         </div>
       </div>
     </div>
